@@ -14,12 +14,18 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+          dotnet-version: '3.1.x'      
+      - name: Setup note
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: '5.0.3'
-      - run: dotnet build <DevOps-Course-Workshop-Module-07-Learners>
-      - run: dotnet test <DevOps-Course-Workshop-Module-07-Learners>
-      - run: npm t <DevOps-Course-Workshop-Module-07-Learners>
-      - run: npm run lint <DevOps-Course-Workshop-Module-07-Learners>
+          node-version: '14'      
+      - run: dotnet build 
+      - run: dotnet test 
+      - run: npm install
+        working-directory: ./DotnetTemplate.Web
+      - run: npm run build
+        working-directory: ./DotnetTemplate.Web
+      - run: npm t 
+        working-directory: ./DotnetTemplate.Web
+      - run: npm run lint
+        working-directory: ./DotnetTemplate.Web
